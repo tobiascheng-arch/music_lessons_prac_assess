@@ -19,4 +19,8 @@ def print_query(view_name:str):
     print(tabulate(results,headings))
     db.close()
 
-print_query("all_info")
+choice = input("pick 'a' for all info \npick 'b' for music fees ").upper()
+if choice == "A":
+    print_query("all_info")
+elif choice == "B":
+    print_query("music_fees")
