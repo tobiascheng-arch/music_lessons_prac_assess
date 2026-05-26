@@ -19,8 +19,21 @@ def print_query(view_name:str):
     print(tabulate(results,headings))
     db.close()
 
-choice = input("pick 'a' for all info \npick 'b' for music fees ").upper()
+def print_parameter_query(fields:str, where:str, parameter):
+    """ Prints the results for a parameter query in tabular form. """
+    db = sqlite3.connect(DB_NAME)
+    cursor = db.cursor()
+    sql = ("SELECT " + fields + " FROM " + TABLES + " WHERE " + where)
+    cursor.execute(sql,(parameter,))
+    results = cursor.fetchall()
+    print(tabulate(results,fields.split(",")))
+    db.close()  
+
+choice = input("pick 'a' for all info\npick 'b' for music fees\nYour choice: ").upper()
 if choice == "A":
     print_query("all_info")
 elif choice == "B":
     print_query("music_fees")
+
+music = input('What day do you want to see (3 letters): ')
+print_parameter_query("name, surname, lesson_time, lesson_day", "lesson_day = ? ORDER BY lesson_time Asc",music)
