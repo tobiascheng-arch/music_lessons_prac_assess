@@ -1,5 +1,7 @@
 import sqlite3
 from tabulate import tabulate
+import sys
+from easygui import *
 
 DB_NAME = 'music_lesson_database.db'
 TABLES = (" music_lessons "
@@ -29,7 +31,11 @@ def print_parameter_query(fields:str, where:str, parameter):
     print(tabulate(results,fields.split(",")))
     db.close()  
 
-choice = input("pick 'a' for all info\npick 'b' for music fees\nYour choice: ").upper()
+msg ="What do you want to see?"
+title = "Music lessons"
+choices = ["Queries", "Day", "School", "Gender", "Instrument", "Year of birth"]
+choice = choicebox(msg, title, choices)
+
 if choice == "A":
     print_query("all_info")
 elif choice == "B":
