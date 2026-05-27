@@ -36,10 +36,29 @@ title = "Music lessons"
 choices = ["Queries", "Day", "School", "Gender", "Instrument", "Year of birth"]
 choice = choicebox(msg, title, choices)
 
-if choice == "A":
-    print_query("all_info")
-elif choice == "B":
-    print_query("music_fees")
+if choice == "Queries":
+    msg ="What do you want to see?"
+    title = "Music lessons"
+    choices = ["afternoon_lessons", "all_info", "drummers", "monday_lessons", "morning_lessons", "music_fees"]
+    query = choicebox(msg, title, choices)
+    print_query(query)
 
-music = input('What day do you want to see (3 letters): ')
-print_parameter_query("name, surname, lesson_time, lesson_day", "lesson_day = ? ORDER BY lesson_time Asc",music)
+elif choice == "Day":
+    msg ="What do you want to see?"
+    title = "Music lessons"
+    choices = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    day = choicebox(msg, title, choices)
+    print_parameter_query("name, surname, instrument, lesson_time, lesson_day", "lesson_day = ? ORDER BY lesson_time Asc",day)
+
+elif choice == "School":
+    msg ="Which school?"
+    title = "Music lessons"
+    choices = ["LMS", "BKI", "CLS", "SPS"]
+    school = choicebox(msg, title, choices)
+    print_parameter_query("name, surname, instrument, school, lesson_time, lesson_day", "school = ? ORDER BY lesson_time Asc",school)
+elif choice == "Gender":
+    print("not done")
+elif choice == "Instrument":
+    print("not done")
+elif choice == "Year of birth":
+    print("not done")
