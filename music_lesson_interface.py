@@ -3,6 +3,7 @@ from tabulate import tabulate
 import sys
 from easygui import *
 
+PASSWORD = "password"
 DB_NAME = 'music_lesson_database.db'
 TABLES = (" music_lessons "
        "LEFT JOIN instruments ON music_lessons.instrument_id = instruments.instrument_id "
@@ -30,6 +31,18 @@ def print_parameter_query(fields:str, where:str, parameter):
     codebox(tabulate(results,fields.split(",")))
     db.close()  
 
+while True:
+    msg = "Enter your password"
+    title = "Music lessons"
+    password = passwordbox(msg, title)
+    if password == PASSWORD:
+        msgbox(msg = "Success", title = "Music lessons")
+        break
+    elif password == None:
+        sys.exit()
+    msgbox(msg = "Incorrect password", title = "Music lessons")
+
+    
 while True:
     msg ="What do you want to see?"
     title = "Music lessons"
